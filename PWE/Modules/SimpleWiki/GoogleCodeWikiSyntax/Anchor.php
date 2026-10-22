@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
-class Anchor extends TagXhtml
+class Anchor extends \WikiTagXhtml
 {
 
     protected $name = 'anchor';

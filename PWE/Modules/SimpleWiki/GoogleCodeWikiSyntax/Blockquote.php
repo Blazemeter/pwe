@@ -2,12 +2,11 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
 /**
  * traite les signes de type blockquote
  */
-class Blockquote extends Block
+class Blockquote extends \WikiRendererBloc
 {
     public $type = 'bq';
     protected $regexp = "/^(\ +)(.*)/";

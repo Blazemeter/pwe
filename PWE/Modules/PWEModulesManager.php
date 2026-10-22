@@ -48,7 +48,7 @@ class PWEModulesManager implements PWECMDJob
             if (!$component)
                 continue;
 
-            if (!$node['!c'][$component][0]) {
+            if (empty($node['!c'][$component][0])) {
                 $node['!c'][$component][0] = array('!p' => &$node);
             }
 
@@ -156,7 +156,7 @@ class PWEModulesManager implements PWECMDJob
         $XML->FileToArray($this->registryFile, $this->registryArray);
 
         $logger = $this->getModuleSettings('PWE\Core\PWELogger');
-        if ($logger['!a']) {
+        if (!empty($logger['!a'])) {
             PWELogger::setLevel(PWELogger::getLevelByName($logger['!a']['level']));
         }
     }

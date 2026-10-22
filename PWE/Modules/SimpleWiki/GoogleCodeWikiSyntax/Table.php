@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
-class Table extends Block
+class Table extends \WikiRendererBloc
 {
 
     public $type = 'table';

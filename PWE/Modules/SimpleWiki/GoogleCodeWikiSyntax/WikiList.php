@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
-class WikiList extends Block
+class WikiList extends \WikiRendererBloc
 {
 
     public $type = 'list';

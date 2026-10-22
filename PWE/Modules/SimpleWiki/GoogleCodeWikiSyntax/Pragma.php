@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
-class Pragma extends Block
+class Pragma extends \WikiRendererBloc
 {
 
     public $type = 'comment';

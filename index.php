@@ -69,7 +69,7 @@ if (php_sapi_name() == 'cli') {
     require_once __DIR__ . '/PWE/Auth/PWEUserAuthController.php';
     $PWECore = new PWECore();
     PWEAutoloader::setPWE($PWECore);
-    $uri = $_SERVER['REDIRECT_URL'] ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI'];
+    $uri = !empty($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI'];
     $started = microtime(true);
     try {
         require_once dirname($_SERVER['SCRIPT_FILENAME']) . '/cfg.php';

@@ -2,6 +2,7 @@
 
 namespace PWE\Exceptions;
 
+use PWE\Core\PWELogger;
 use RuntimeException;
 
 /**
@@ -33,10 +34,18 @@ class PHPFatalException extends RuntimeException
 
     public static function errorHandler($errno, $errstr, $errfile, $errline)
     {
-        // @ prefix sets error_reporting() to 0, avoid triggering on @fopen
-        if (error_reporting() != 0) {
-            throw new PHPFatalException($errstr, $errno, $errfile, $errline);
+        // @ prefix masks the error out of error_reporting() (PHP 8 no longer sets it to 0), avoid triggering on @fopen
+        if (!(error_reporting() & $errno)) {
+            return true;
         }
+
+        // deprecations are only logged, so a newer PHP version does not take pages down
+        if ($errno == E_DEPRECATED || $errno == E_USER_DEPRECATED) {
+            PWELogger::warn("PHP deprecation: %s in %s:%s", $errstr, $errfile, $errline);
+            return true;
+        }
+
+        throw new PHPFatalException($errstr, $errno, $errfile, $errline);
     }
 
 }

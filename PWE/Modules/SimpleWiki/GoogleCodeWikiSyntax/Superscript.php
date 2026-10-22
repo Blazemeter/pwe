@@ -2,12 +2,11 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
 /**
  * Gestion du texte en exposant.
  */
-class Superscript extends TagXhtml
+class Superscript extends \WikiTagXhtml
 {
     protected $name = 'sup';
     public $beginTag = '^';

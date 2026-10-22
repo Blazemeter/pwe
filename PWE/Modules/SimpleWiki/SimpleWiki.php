@@ -13,7 +13,6 @@ use PWE\Modules\Outputable;
 use PWE\Modules\PWEConnected;
 use PWE\Modules\PWEModule;
 use PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Config;
-use WikiRenderer\Renderer;
 
 class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
 {
@@ -32,7 +31,7 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
         list($dir, $ext) = $this->getDirAndExt($node);
 
         $args = $this->PWE->getURL()->getParamsAsArray();
-        if ($node['!i']['single_page'] && !$args) {
+        if (!empty($node['!i']['single_page']) && !$args) {
             throw new HTTP3xxException($node['!i']['single_page'] . "/");
         } elseif (!$args) {
             $page = $node['!i']['start_page'] ?: "list";
@@ -59,7 +58,7 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
      */
     protected function getRenderer()
     {
-        $w = new Renderer($this->config);
+        $w = new \WikiRenderer($this->config);
         return $w;
     }
 
@@ -143,7 +142,7 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
     private function processSmarty($contents, $dir, $ext)
     {
         $node = $this->PWE->getNode();
-        $tpl = $node['!i']['layout_tpl'] ?: __DIR__ . '/wiki.tpl';
+        $tpl = ($node['!i']['layout_tpl'] ?? null) ?: __DIR__ . '/wiki.tpl';
 
         $smarty = new SmartyWrapper($this->PWE);
         $smarty->setTemplateFile($tpl);
@@ -155,7 +154,7 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
             $sidebar = "";
         }
 
-        if (!$node['!a']['no_sidebar_file'] && is_file($dir . '/Sidebar.' . $ext)) {
+        if (empty($node['!a']['no_sidebar_file']) && is_file($dir . '/Sidebar.' . $ext)) {
             $sidebar .= $this->renderPage($dir . '/Sidebar.' . $ext);
         }
         $smarty->assign("sidebar", $sidebar);

@@ -21,7 +21,7 @@ class PWEDoctrineLogger implements SQLLogger
         PWELogger::debug('Query count %s: %s', $this->prefix, $this->count);
     }
 
-    public function startQuery($sql, array $params = null, array $types = null)
+    public function startQuery($sql, ?array $params = null, ?array $types = null)
     {
         $this->count++;
         PWELogger::debug("%s #%s: %s\tParams: %s", $this->prefix, $this->count, $sql, $params);

@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
-class Title extends Block
+class Title extends \WikiRendererBloc
 {
 
     public $type = 'title';

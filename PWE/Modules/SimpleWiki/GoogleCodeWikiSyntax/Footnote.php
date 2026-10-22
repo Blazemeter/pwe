@@ -2,13 +2,12 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
 /**
  * Gestion des notes de bas de page.
  * @todo    Gérer les notes identifiées par un titre et non par un numéro.
  */
-class Footnote extends TagXhtml
+class Footnote extends \WikiTagXhtml
 {
     protected $name = 'footnote';
     public $beginTag = '((';

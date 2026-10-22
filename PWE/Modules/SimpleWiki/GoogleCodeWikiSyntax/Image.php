@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
-class Image extends TagXhtml
+class Image extends \WikiTagXhtml
 {
 
     protected $name = 'image';

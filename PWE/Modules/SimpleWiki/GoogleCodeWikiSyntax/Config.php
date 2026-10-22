@@ -9,7 +9,7 @@ use PWE\Modules\SimpleWiki\TOCProvider;
 /**
  * took it from Skriv https://github.com/Amaury/SkrivMarkup
  */
-class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
+class Config extends \WikiRendererConfig implements PWEConnected, TOCProvider
 {
 
     /**
@@ -19,11 +19,11 @@ class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
     private $PWE;
 
     /** ??? */
-    public $defaultTextLineContainer = '\WikiRenderer\HtmlTextLine';
+    public $defaultTextLineContainer = '\WikiHtmlTextLine';
 
     /** List of inline markups. */
     public $textLineContainers = array(
-        '\WikiRenderer\HtmlTextLine' => array(
+        '\WikiHtmlTextLine' => array(
             '\PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Strong', // **strong**
             '\PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Strong', // **strong**
             '\PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Em', // ''em''
@@ -44,7 +44,7 @@ class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
     );
 
     /** List of block markups. */
-    public $blocktags = array(
+    public $bloctags = array(
         '\PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Pragma',
         '\PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Title',
         '\PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\WikiList',
@@ -110,7 +110,7 @@ class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
      *        - bool        ext-date        Activate the <<date>> extension. (default: true)
      * @param    \PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Config parentConfig Parent configuration object, for recursive calls.
      */
-    public function __construct(array $param = null, Config $parentConfig = null)
+    public function __construct(?array $param = null, ?Config $parentConfig = null)
     {
         // creation of the default parameters array
         $randomId = base_convert(rand(0, 50000), 10, 36);
@@ -194,9 +194,9 @@ class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
                 $blockExt[] = $obj;
         }
         if (!empty($inlineExt))
-            $this->textLineContainers['\WikiRenderer\HtmlTextLine'] = array_merge($this->textLineContainers['\WikiRenderer\HtmlTextLine'], $inlineExt);
+            $this->textLineContainers['\WikiHtmlTextLine'] = array_merge($this->textLineContainers['\WikiHtmlTextLine'], $inlineExt);
         if (!empty($blockExt))
-            $this->blocktags = array_merge($blockExt, $this->blocktags);
+            $this->bloctags = array_merge($blockExt, $this->bloctags);
     }
 
     /**
@@ -239,7 +239,7 @@ class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
         }
         // conversion of accented characters
         // see http://www.weirdog.com/blog/php/supprimer-les-accents-des-caracteres-accentues.html
-        $text = htmlentities($text, ENT_NOQUOTES, 'utf-8');
+        $text = htmlentities((string)$text, ENT_NOQUOTES, 'utf-8');
         $text = preg_replace('#&([A-za-z])(?:acute|cedil|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $text);
         $text = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $text); // for ligatures e.g. '&oelig;'
         $text = preg_replace('#&([lr]s|sb|[lrb]d)(quo);#', ' ', $text); // for *quote (http://www.degraeve.com/reference/specialcharacters.php)
@@ -364,8 +364,8 @@ class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
     public function getToc($raw = false)
     {
         if ($raw === true)
-            return ($this->_toc['sub']);
-        $html = "<b>On this page:</b>" . $this->_getRenderedToc($this->_toc['sub']);
+            return ($this->_toc['sub'] ?? null);
+        $html = "<b>On this page:</b>" . $this->_getRenderedToc($this->_toc['sub'] ?? null);
         return ($html);
     }
 
@@ -467,7 +467,7 @@ class Config extends \WikiRenderer\Config implements PWEConnected, TOCProvider
         $html = "<ul class=\"toc-list toc-list$depth\">\n";
         foreach ($list as $entry) {
             $html .= "<li class=\"toc-entry\">\n";
-            $html .= '<a href="#' . $this->getParam('anchorsPrefix') . $this->titleToIdentifier($depth, $entry['value']) . '">' . $entry['value'] . "</a>\n";
+            $html .= '<a href="#' . $this->getParam('anchorsPrefix') . $this->titleToIdentifier($depth, $entry['value'] ?? null) . '">' . ($entry['value'] ?? null) . "</a>\n";
             if (isset($entry['sub']))
                 $html .= $this->_getRenderedToc($entry['sub'], ($depth + 1));
             $html .= "</li>\n";

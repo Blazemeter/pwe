@@ -3,10 +3,9 @@
 namespace PWE\Modules\SimpleWiki\GitHubMarkdownSyntax;
 
 use GeSHi;
-use WikiRenderer\Block;
 
 /** Gestion des paragraphes de code. */
-class Code extends Block
+class Code extends \WikiRendererBloc
 {
     public $type = 'pre';
     protected $isOpen = false;

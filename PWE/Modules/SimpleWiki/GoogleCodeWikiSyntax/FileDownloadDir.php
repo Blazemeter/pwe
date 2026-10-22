@@ -6,9 +6,8 @@ use PWE\Core\PWECore;
 use PWE\Modules\FileDownloads\FileDownloads;
 use PWE\Modules\PWEConnected;
 use SebastianBergmann\GlobalState\RuntimeException;
-use WikiRenderer\TagXhtml;
 
-class FileDownloadDir extends TagXhtml
+class FileDownloadDir extends \WikiTagXhtml
 {
 
     protected $name = 'file';
