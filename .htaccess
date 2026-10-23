@@ -3,7 +3,7 @@ RewriteBase /
 
 # no direct access to dependencies, composer metadata and site config, they are loaded by index.php only
 # (access rule, not a RewriteRule: rewrite rules of .htaccess files in subdirectories,
-# e.g. vendor/undera/pwe/.htaccess, replace the ones defined here)
+# e.g. vendor/blazemeter/pwe/.htaccess, replace the ones defined here)
 <If "%{REQUEST_URI} =~ m#^/(vendor/|composer\.(json|lock)$|cfg\.php$)#">
     Require all denied
 </If>

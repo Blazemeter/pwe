@@ -1,14 +1,25 @@
 {
-  "name": "undera/pwe",
-  "description": "Lightweight PHP framework",
+  "name": "blazemeter/pwe",
+  "description": "Lightweight PHP framework (Pluggable Web Engine), BlazeMeter fork of undera/pwe used by gettaurus.org",
   "minimum-stability": "dev",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/Blazemeter/pwe",
   "authors": [
     {
       "name": "Andrey Pokhilko",
-      "email": "apc4@ya.ru"
+      "email": "apc4@ya.ru",
+      "role": "Original author"
+    },
+    {
+      "name": "BlazeMeter",
+      "homepage": "https://www.blazemeter.com",
+      "role": "Maintainer"
     }
   ],
+  "support": {
+    "source": "https://github.com/Blazemeter/pwe",
+    "issues": "https://github.com/Blazemeter/pwe/issues"
+  },
   "require-dev": {
     "phpunit/phpunit": "~4"
   },
