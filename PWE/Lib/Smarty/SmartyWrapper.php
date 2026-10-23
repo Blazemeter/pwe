@@ -6,7 +6,7 @@ use PWE\Core\PWECore;
 use PWE\Core\PWELogger;
 use PWE\Modules\Setupable;
 use PWE\Utils\FilesystemHelper;
-use Smarty;
+use Smarty\Smarty;
 
 class SmartyWrapper extends Smarty implements Setupable
 {
@@ -28,9 +28,7 @@ class SmartyWrapper extends Smarty implements Setupable
         PWELogger::debug('Smarty cache dir detected as %s', $smartyDir);
         $this->setCacheDir($smartyDir);
         $this->setCompileDir($smartyDir);
-        $this->registerPlugin('function', 'flush', 'flush', false);
-        $this->registerPlugin('function', 'sleep', 'sleep', false); // for debug purposes
-        // PHP functions used as modifiers by templates, Smarty 4.5+ requires them to be registered
+        // PHP functions used as modifiers by templates, Smarty 5 requires them to be registered
         $this->registerPlugin('modifier', 'is_a', 'is_a');
         $this->registerPlugin('modifier', 'date', 'date');
     }
