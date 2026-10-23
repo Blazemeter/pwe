@@ -1,7 +1,6 @@
 {
   "name": "blazemeter/pwe",
   "description": "Lightweight PHP framework (Pluggable Web Engine), BlazeMeter fork of undera/pwe used by gettaurus.org",
-  "minimum-stability": "dev",
   "license": "Apache-2.0",
   "homepage": "https://github.com/Blazemeter/pwe",
   "authors": [
@@ -24,12 +23,14 @@
     "phpunit/phpunit": "~4"
   },
   "require": {
-    "php": ">=7.1",
+    "php": "^8.3",
     "smarty/smarty": "^5.8",
     "jelix/wikirenderer": "3.1.11",
     "ext-xml": "*",
     "ext-json": "*",
-    "ext-posix": "*"
+    "ext-posix": "*",
+    "ext-dom": "*",
+    "ext-ctype": "*"
   },
   "suggest": {
     "easybook/geshi": "Syntax highlighting of code blocks in SimpleWiki (GPL-2.0), without it code blocks are rendered unhighlighted"
