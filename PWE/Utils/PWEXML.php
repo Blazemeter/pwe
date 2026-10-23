@@ -78,13 +78,11 @@ class PWEXML extends PWEXMLFunctions implements Setupable
         xml_parser_set_option($Parser, XML_OPTION_SKIP_WHITE, 1);
 
 
+        // parser is released when $Parser goes out of scope (xml_parser_free() is a no-op since PHP 8.0, deprecated in 8.5)
         if (!xml_parse_into_struct($Parser, $xml_data, $this->parsed_vals)) {
             $error = xml_error_string(xml_get_error_code($Parser)) . ' while parsing ' . $xmlFilename;
-            xml_parser_free($Parser);
             throw new RuntimeException($error);
         }
-
-        xml_parser_free($Parser);
 
         $i = 0;
         $arr = array();
