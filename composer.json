@@ -27,10 +27,12 @@
     "php": ">=7.1",
     "smarty/smarty": "^5.8",
     "jelix/wikirenderer": "3.1.11",
-    "easybook/geshi": "~1",
     "ext-xml": "*",
     "ext-json": "*",
     "ext-posix": "*"
+  },
+  "suggest": {
+    "easybook/geshi": "Syntax highlighting of code blocks in SimpleWiki (GPL-2.0), without it code blocks are rendered unhighlighted"
   },
   "autoload": {
     "psr-0": {
