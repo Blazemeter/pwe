@@ -310,10 +310,10 @@
                                         title='Mathematical sign, means "For All"'>&forall;</td>
                                     <td align='right' style="font-size: 80%;">
                                         Powered by
-                                        <a title='Pluggable Web Engine' href='https://github.com/undera/pwe'
+                                        <a title='Pluggable Web Engine' href='https://github.com/Blazemeter/pwe'
                                            style="font-weight: bold;">P&nbsp;W&nbsp;E</a>
                                     </td>
-                                    <td style='padding: 5px;'><a href='https://github.com/undera/pwe'><img
+                                    <td style='padding: 5px;'><a href='https://github.com/Blazemeter/pwe'><img
                                                     style='margin-bottom: 3px; border: none;'
                                                     src='{$IMG_HREF}/design/pwe_logo_small.gif'
                                                     title='Pluggable Web Engine'

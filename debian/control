@@ -1,9 +1,0 @@
-Source: php5-pwe-framework
-Maintainer: Andrey Pohilko <apc@apc.kg>
-Build-Depends: debhelper (>=5), curl
-Standards-Version: 3.7.2
-
-Package: php5-pwe-framework
-Architecture: all
-Depends: php5, subversion, curl
-Description: Pluggable Web Engine PHP 5 Framework
