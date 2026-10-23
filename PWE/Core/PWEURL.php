@@ -225,6 +225,6 @@ class PWEURL implements SmartyAssociative
      */
     public function isForcedTrailingSlash()
     {
-        return $this->node['!i']['force_trailing_slash'] || !isset($this->node['!i']['force_trailing_slash']);
+        return !isset($this->node['!i']['force_trailing_slash']) || $this->node['!i']['force_trailing_slash'];
     }
 }

@@ -27,12 +27,12 @@ class RedirectAccepted extends PWEModule implements Outputable
             $uri .= implode('/', $params);
         }
 
-        if (!strstr(end($params), '.') && !$node['!a']['no_final_slash']) {
+        if (!strstr(end($params), '.') && empty($node['!a']['no_final_slash'])) {
             $uri .= "/";
         }
 
         // добавление trailer
-        if ($node['!a']['trailer'])
+        if (!empty($node['!a']['trailer']))
             $uri .= $node['!a']['trailer'];
 
         // проверка наличия запросной части в URI
