@@ -7,7 +7,7 @@ use PWE\Core\UnitTestPWECore;
 use PWE\Exceptions\HTTP3xxException;
 use PWE\Exceptions\HTTP4xxException;
 
-class SimpleWikiTest extends \PHPUnit_Framework_TestCase
+class SimpleWikiTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testRender()

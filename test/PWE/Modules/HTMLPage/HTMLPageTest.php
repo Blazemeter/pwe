@@ -7,7 +7,7 @@ use PWE\Exceptions\HTTP4xxException;
 
 require_once __DIR__ . '/../../../PWEUnitTests.php';
 
-class HTMLPageTest extends \PHPUnit_Framework_TestCase
+class HTMLPageTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -17,7 +17,7 @@ class HTMLPageTest extends \PHPUnit_Framework_TestCase
     private $PWE;
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->PWE = new UnitTestPWECore();
         $tmp = $this->PWE->getTempDirectory();

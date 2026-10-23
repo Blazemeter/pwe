@@ -6,7 +6,7 @@ use ExceptionExpected;
 
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
-class PWELoggerTest extends \PHPUnit_Framework_TestCase
+class PWELoggerTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testSetLevel()

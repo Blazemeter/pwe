@@ -7,7 +7,7 @@ use PWE\Core\PWELogger;
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
 
-class PWEHTTPExceptionTest extends \PHPUnit_Framework_TestCase
+class PWEHTTPExceptionTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -19,7 +19,7 @@ class PWEHTTPExceptionTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new HTTPExceptionImpl("test", 500);
     }
@@ -28,7 +28,7 @@ class PWEHTTPExceptionTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
 
     }

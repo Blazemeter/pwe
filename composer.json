@@ -20,7 +20,8 @@
     "issues": "https://github.com/Blazemeter/pwe/issues"
   },
   "require-dev": {
-    "phpunit/phpunit": "~4"
+    "phpunit/phpunit": "^12",
+    "easybook/geshi": "~1"
   },
   "require": {
     "php": "^8.3",

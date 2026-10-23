@@ -6,7 +6,7 @@ use PWE\Core\UnitTestPWECore;
 
 require_once __DIR__ . '/../../../PWEUnitTests.php';
 
-class SubPagesListTest extends \PHPUnit_Framework_TestCase
+class SubPagesListTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -15,7 +15,7 @@ class SubPagesListTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
 
     }

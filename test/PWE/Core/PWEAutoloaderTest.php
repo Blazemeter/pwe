@@ -5,7 +5,7 @@ namespace PWE\Core;
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
 
-class PWEAutoloaderTest extends \PHPUnit_Framework_TestCase
+class PWEAutoloaderTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testSetPWE()

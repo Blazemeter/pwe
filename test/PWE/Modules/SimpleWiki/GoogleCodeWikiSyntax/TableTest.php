@@ -3,9 +3,8 @@
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
 use PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax\Table;
-use WikiRenderer\Renderer;
 
-class TableTest extends \PHPUnit_Framework_TestCase
+class TableTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -13,9 +12,9 @@ class TableTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->object = new TableEmul(new Renderer());
+        $this->object = new TableEmul(new \WikiRenderer());
     }
 
     public function testOpen()

@@ -5,7 +5,7 @@ namespace PWE\Modules;
 
 use PWE\Core\UnitTestPWECore;
 
-class AbstractRESTCallTest extends \PHPUnit_Framework_TestCase
+class AbstractRESTCallTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testGet()

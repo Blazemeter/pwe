@@ -13,3 +13,5 @@ debian/files
 .idea
 /vendor/
 *.iml
+.phpunit.result.cache
+/.phpunit.cache/

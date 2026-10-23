@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../../PWEUnitTests.php';
 use PWE\Core\UnitTestPWECore;
 use PWE\Exceptions\HTTP3xxException;
 
-class RedirectAcceptedTest extends \PHPUnit_Framework_TestCase
+class RedirectAcceptedTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -15,8 +15,9 @@ class RedirectAcceptedTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
+        $_GET = array(); // other tests leave request parameters behind
         $this->object = new RedirectAccepted(new UnitTestPWECore());
     }
 
