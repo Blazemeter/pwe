@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GitHubMarkdownSyntax;
 
-use WikiRenderer\TagXhtml;
 
-class Inliner extends TagXhtml
+class Inliner extends \WikiTagXhtml
 {
 
     protected $name = 'tt';

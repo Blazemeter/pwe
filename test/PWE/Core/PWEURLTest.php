@@ -7,11 +7,11 @@ use PWE\Exceptions\HTTP3xxException;
 use PWE\Exceptions\HTTP4xxException;
 use PWE\Utils\PWEXML;
 
-class PWEURLTest extends \PHPUnit_Framework_TestCase
+class PWEURLTest extends \PHPUnit\Framework\TestCase
 {
     private $struct = array('url' => array(array()));
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $xml = new PWEXML();
         $xml->FileToArray(__DIR__ . '/coreXML/out.xml', $this->struct);

@@ -261,7 +261,7 @@ class PWECore
             $this->siteStructure = $this->getSiteStructure();
         }
 
-        PWELogger::info("=== %s %s", $_SERVER['REQUEST_METHOD'], $uri);
+        PWELogger::info("=== %s %s", $_SERVER['REQUEST_METHOD'] ?? 'CLI', $uri);
         PWELogger::debug("Request variables: %s", $_REQUEST);
         $this->URL = new PWEURL($uri, $this->siteStructure);
 
@@ -270,7 +270,7 @@ class PWECore
         }
 
         $node = $this->getNode();
-        $this->setDisplayTemplate($node['!i']['template']);
+        $this->setDisplayTemplate($node['!i']['template'] ?? null);
 
         $this->jumpToFirstChild();
 
@@ -313,7 +313,7 @@ class PWECore
         }
 
         if (!headers_sent()) {
-            $status = $_SERVER["SERVER_PROTOCOL"] . ' ' . $code;
+            $status = ($_SERVER["SERVER_PROTOCOL"] ?? 'HTTP/1.1') . ' ' . $code;
             PWELogger::debug("HTTP Status header: %s", $status);
             header($status, true, $code);
         } else {
@@ -330,7 +330,7 @@ class PWECore
     public function sendHTTPHeader($header, $replace = null, $http_response_code = null)
     {
         PWELogger::debug("Response header: %s", $header);
-        header($header, $replace, $http_response_code);
+        header($header, (bool)$replace, (int)$http_response_code);
     }
 
     public function getErrorPage(\Exception $e)
@@ -344,7 +344,7 @@ class PWECore
             $smarty->assign('inner', $e->getPrevious());
         }
         $node = $this->getNode();
-        $smarty->setTemplateFile($node['!i']['error_template'] ? $node['!i']['error_template'] : $this->errorsTemplate);
+        $smarty->setTemplateFile(!empty($node['!i']['error_template']) ? $node['!i']['error_template'] : $this->errorsTemplate);
         return $smarty->fetchAll();
     }
 
@@ -368,7 +368,7 @@ class PWECore
 
     public function addContent(SmartyWrapper $smarty, $tag = false)
     {
-        $this->htmlContent[$tag] .= $smarty->fetchAll();
+        $this->htmlContent[$tag] = ($this->htmlContent[$tag] ?? '') . $smarty->fetchAll();
         PWELogger::debug("Content %s [%d]: %s...", $tag, strlen($this->htmlContent[$tag]), substr($this->htmlContent[$tag], 0, 64));
     }
 
@@ -396,7 +396,7 @@ class PWECore
             $levelCount = 0;
             $current = &$this->siteStructure['url'];
             while ($levelCount <= $level) {
-                $pos = PWEXMLFunctions::findNodeWithAttributeValue($current, 'link', $matched[$levelCount]);
+                $pos = PWEXMLFunctions::findNodeWithAttributeValue($current, 'link', $matched[$levelCount] ?? null);
                 if ($pos < 0) {
                     //throw new HTTP5xxException("Something gone completely wrong with the structure");
                     break;

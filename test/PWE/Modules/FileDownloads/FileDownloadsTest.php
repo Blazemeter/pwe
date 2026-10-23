@@ -6,7 +6,7 @@ use PWE\Core\UnitTestPWECore;
 
 require_once __DIR__ . '/../../../PWEUnitTests.php';
 
-class FileDownloadsTest extends \PHPUnit_Framework_TestCase
+class FileDownloadsTest extends \PHPUnit\Framework\TestCase
 {
 
     public function test_zip_filter()

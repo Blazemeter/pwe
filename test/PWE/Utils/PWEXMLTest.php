@@ -8,7 +8,7 @@ use RuntimeException;
 
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
-class PWEXMLTest extends \PHPUnit_Framework_TestCase
+class PWEXMLTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testFileToArray_NoCache()
@@ -116,7 +116,7 @@ class PWEXMLTest extends \PHPUnit_Framework_TestCase
             $xml->ArrayToFile($data, $tmp . '/test.xml');
             $this->fail();
         } catch (RuntimeException $e) {
-            $this->assertFileNotExists($tmp . '/test.xml');
+            $this->assertFileDoesNotExist($tmp . '/test.xml');
         }
     }
 

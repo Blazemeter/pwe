@@ -2,12 +2,11 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
 /**
  * traite les signes de types hr
  */
-class Hr extends Block
+class Hr extends \WikiRendererBloc
 {
     public $type = 'hr';
     protected $regexp = '/^-{4,}$/';

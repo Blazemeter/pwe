@@ -3,9 +3,8 @@
 namespace PWE\Modules\SimpleWiki\GitHubMarkdownSyntax;
 
 use PWE\Modules\PWEConnected;
-use WikiRenderer\TagXhtml;
 
-class Link extends TagXhtml
+class Link extends \WikiTagXhtml
 {
 
     protected $name = 'a';
@@ -44,7 +43,7 @@ class Link extends TagXhtml
 
             if ($this->config instanceof PWEConnected) {
                 $node = $this->config->getPWE()->getNode();
-                if ((strpos($href, '://') == false && $href[0] != '/') && $node['!i']['img_path_prepend']) {
+                if ((strpos($href, '://') == false && $href[0] != '/') && !empty($node['!i']['img_path_prepend'])) {
                     $href = $node['!i']['img_path_prepend'] . $href;
                 }
             }

@@ -2,17 +2,17 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-class HTMLTest extends \PHPUnit_Framework_TestCase
+class HTMLTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @var \WikiRenderer\Renderer
+     * @var \WikiRenderer
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->object = new \WikiRenderer\Renderer(new Config());
+        $this->object = new \WikiRenderer(new Config());
     }
 
     public function testGetRenderedLine_anchored()

@@ -4,9 +4,8 @@ namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
 use PWE\Core\PWECore;
 use PWE\Modules\FileDownloads\FileDownloads;
-use WikiRenderer\TagXhtml;
 
-class FileDownload extends TagXhtml
+class FileDownload extends \WikiTagXhtml
 {
 
     protected $name = 'file';

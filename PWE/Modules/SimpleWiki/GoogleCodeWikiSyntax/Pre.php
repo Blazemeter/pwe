@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
-class Pre extends Block
+class Pre extends \WikiRendererBloc
 {
 
     public $type = 'pre';

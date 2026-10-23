@@ -4,7 +4,7 @@ namespace PWE\Utils;
 
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
-class PWEXMLFunctionsTest extends \PHPUnit_Framework_TestCase
+class PWEXMLFunctionsTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testFindNodeWithAttributeValue()

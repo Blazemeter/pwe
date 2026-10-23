@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GitHubMarkdownSyntax;
 
-use WikiRenderer\TagXhtml;
 
-class Strong extends TagXhtml
+class Strong extends \WikiTagXhtml
 {
 
     protected $name = 'strong';

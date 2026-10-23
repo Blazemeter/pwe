@@ -6,7 +6,7 @@ use PWE\Core\PWECore;
 use PWE\Core\PWELogger;
 use PWE\Modules\Setupable;
 use PWE\Utils\FilesystemHelper;
-use Smarty;
+use Smarty\Smarty;
 
 class SmartyWrapper extends Smarty implements Setupable
 {
@@ -17,17 +17,20 @@ class SmartyWrapper extends Smarty implements Setupable
     public function __construct(PWECore $PWE)
     {
         parent::__construct();
+        // templates rely on undefined/null array keys reading as null (PHP 7 behaviour)
+        $this->muteUndefinedOrNullWarnings();
         $this->PWE = $PWE;
         $smartyDir = $this->PWE->getTempDirectory();
         $settings = $this->PWE->getModulesManager()->getModuleSettings(__CLASS__);
-        $settings = $settings['!c']['settings'][0];
-        if ($settings['!a']['cacheDir'])
+        $settings = $settings['!c']['settings'][0] ?? null;
+        if (!empty($settings['!a']['cacheDir']))
             $smartyDir = $settings['!a']['cacheDir'];
         PWELogger::debug('Smarty cache dir detected as %s', $smartyDir);
         $this->setCacheDir($smartyDir);
         $this->setCompileDir($smartyDir);
-        $this->registerPlugin('function', 'flush', 'flush', false);
-        $this->registerPlugin('function', 'sleep', 'sleep', false); // for debug purposes
+        // PHP functions used as modifiers by templates, Smarty 5 requires them to be registered
+        $this->registerPlugin('modifier', 'is_a', 'is_a');
+        $this->registerPlugin('modifier', 'date', 'date');
     }
 
     public function setTemplateFile($file)

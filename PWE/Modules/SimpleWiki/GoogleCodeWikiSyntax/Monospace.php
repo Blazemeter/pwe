@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
-class Monospace extends TagXhtml
+class Monospace extends \WikiTagXhtml
 {
 
     protected $name = 'tt';

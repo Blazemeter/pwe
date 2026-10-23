@@ -28,7 +28,7 @@ abstract class PWEHTTPException extends RuntimeException
         503 => 'Temporarily Unavailable',
     );
 
-    function __construct($message, $code, \Exception $previous = NULL)
+    function __construct($message, $code, ?\Exception $previous = NULL)
     {
         parent::__construct($message, $code, $previous);
         PWELogger::debug("Exception %s: %s", $code, ($code == 200 ? strlen($message) . " bytes to display" : $message));

@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Renderer;
 
-class MonospaceTest extends \PHPUnit_Framework_TestCase
+class MonospaceTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -12,9 +11,9 @@ class MonospaceTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->object = new Renderer(new Config());
+        $this->object = new \WikiRenderer(new Config());
     }
 
     public function test1()

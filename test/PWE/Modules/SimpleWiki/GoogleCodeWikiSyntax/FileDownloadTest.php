@@ -2,24 +2,23 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Renderer;
 
-class FileDownloadTest extends \PHPUnit_Framework_TestCase
+class FileDownloadTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @var Renderer
+     * @var \WikiRenderer
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $cnf = new Config();
         $pwe = new \PWE\Core\UnitTestPWECore();
         $pwe->setXMLDirectory(__DIR__);
         $cnf->setPWE($pwe);
         $pwe->setURL('/');
-        $this->object = new Renderer($cnf);
+        $this->object = new \WikiRenderer($cnf);
     }
 
     public function testGetRenderedLine_anchored()

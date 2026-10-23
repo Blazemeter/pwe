@@ -1,26 +1,40 @@
 {
-  "name": "undera/pwe",
-  "description": "Lightweight PHP framework",
-  "minimum-stability": "dev",
+  "name": "blazemeter/pwe",
+  "description": "Lightweight PHP framework (Pluggable Web Engine), BlazeMeter fork of undera/pwe used by gettaurus.org",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/Blazemeter/pwe",
   "authors": [
     {
       "name": "Andrey Pokhilko",
-      "email": "apc4@ya.ru"
+      "email": "apc4@ya.ru",
+      "role": "Original author"
+    },
+    {
+      "name": "BlazeMeter",
+      "homepage": "https://www.blazemeter.com",
+      "role": "Maintainer"
     }
   ],
+  "support": {
+    "source": "https://github.com/Blazemeter/pwe",
+    "issues": "https://github.com/Blazemeter/pwe/issues"
+  },
   "require-dev": {
-    "phpunit/phpunit": "~4"
+    "phpunit/phpunit": "^12",
+    "easybook/geshi": "~1"
   },
   "require": {
-    "php": ">=5.3.0",
-    "doctrine/dbal": "~2.5",
-    "smarty/smarty": "~3.1",
-    "amaury/wikirenderer": "dev-master",
-    "easybook/geshi": "~1",
+    "php": "^8.3",
+    "smarty/smarty": "^5.8",
+    "jelix/wikirenderer": "3.1.11",
     "ext-xml": "*",
     "ext-json": "*",
-    "ext-posix": "*"
+    "ext-posix": "*",
+    "ext-dom": "*",
+    "ext-ctype": "*"
+  },
+  "suggest": {
+    "easybook/geshi": "Syntax highlighting of code blocks in SimpleWiki (GPL-2.0), without it code blocks are rendered unhighlighted"
   },
   "autoload": {
     "psr-0": {

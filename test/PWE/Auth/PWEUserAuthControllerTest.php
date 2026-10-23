@@ -7,7 +7,7 @@ use PWE\Core\UnitTestPWECore;
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
 
-class PWEUserAuthControllerTest extends \PHPUnit_Framework_TestCase
+class PWEUserAuthControllerTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -15,7 +15,7 @@ class PWEUserAuthControllerTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new PWEUserAuthControllerImpl();
     }

@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Tag;
 
-class HTML extends Tag
+class HTML extends \WikiTag
 {
 
     protected $name = 'html';

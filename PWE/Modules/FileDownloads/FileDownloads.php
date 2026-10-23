@@ -22,12 +22,12 @@ class FileDownloads extends PWEModule implements Outputable
     {
         parent::__construct($core);
         $node = $core->getNode();
-        $this->dl_base = $node['!a']['files_base'];
+        $this->dl_base = $node['!a']['files_base'] ?? null;
         if (!$this->dl_base) {
             throw new HTTP5xxException("Not configured files base");
         }
 
-        $this->link_base = $node['!a']['download_link'];
+        $this->link_base = $node['!a']['download_link'] ?? null;
     }
 
     public static function filter_out_cnt($current)

@@ -5,7 +5,7 @@ namespace PWE\Utils;
 use PWE\Core\PWELogger;
 use PWE\Core\UnitTestPWECore;
 
-class CSSJSPreprocessorTest extends \PHPUnit_Framework_TestCase
+class CSSJSPreprocessorTest extends \PHPUnit\Framework\TestCase
 {
     public function testProcess()
     {
@@ -23,15 +23,15 @@ class CSSJSPreprocessorTest extends \PHPUnit_Framework_TestCase
         PWELogger::debug("JS: $pwe_js");
         PWELogger::debug("CSS: $pwe_css");
 
-        $this->assertContains("do_process_css", $pwe_css);
-        $this->assertNotContains("not_process_css", $pwe_css);
-        $this->assertContains("not_process_css", $test_tpl);
-        $this->assertNotContains("do_process_css", $test_tpl);
+        $this->assertStringContainsString("do_process_css", $pwe_css);
+        $this->assertStringNotContainsString("not_process_css", $pwe_css);
+        $this->assertStringContainsString("not_process_css", $test_tpl);
+        $this->assertStringNotContainsString("do_process_css", $test_tpl);
 
-        $this->assertContains("do_process_js", $pwe_js);
-        $this->assertNotContains("not_process_js", $pwe_js);
-        $this->assertContains("not_process_js", $test_tpl);
-        $this->assertNotContains("do_process_js", $test_tpl);
+        $this->assertStringContainsString("do_process_js", $pwe_js);
+        $this->assertStringNotContainsString("not_process_js", $pwe_js);
+        $this->assertStringContainsString("not_process_js", $test_tpl);
+        $this->assertStringNotContainsString("do_process_js", $test_tpl);
     }
 
 }

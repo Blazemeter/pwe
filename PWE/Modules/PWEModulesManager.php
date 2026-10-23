@@ -48,7 +48,7 @@ class PWEModulesManager implements PWECMDJob
             if (!$component)
                 continue;
 
-            if (!$node['!c'][$component][0]) {
+            if (empty($node['!c'][$component][0])) {
                 $node['!c'][$component][0] = array('!p' => &$node);
             }
 
@@ -156,7 +156,7 @@ class PWEModulesManager implements PWECMDJob
         $XML->FileToArray($this->registryFile, $this->registryArray);
 
         $logger = $this->getModuleSettings('PWE\Core\PWELogger');
-        if ($logger['!a']) {
+        if (!empty($logger['!a'])) {
             PWELogger::setLevel(PWELogger::getLevelByName($logger['!a']['level']));
         }
     }
@@ -183,11 +183,11 @@ class PWEModulesManager implements PWECMDJob
                     array_push($stack, $i);
                 }
 
-                if (strlen($node['!v'])) {
+                if (strlen($node['!v'] ?? '')) {
                     echo implode('.', $stack) . "=" . $node['!v'] . "\n";
                 }
 
-                foreach ($node['!a'] ? $node['!a'] : array() as $name => $val) {
+                foreach (!empty($node['!a']) ? $node['!a'] : array() as $name => $val) {
                     echo implode('.', $stack) . ".$name=$val\n";
                 }
                 if (sizeof($nodes) > 1) {

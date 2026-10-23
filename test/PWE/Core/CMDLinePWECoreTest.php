@@ -2,7 +2,7 @@
 
 namespace PWE\Core;
 
-class CMDLinePWECoreTest extends \PHPUnit_Framework_TestCase
+class CMDLinePWECoreTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

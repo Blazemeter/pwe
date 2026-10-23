@@ -6,7 +6,7 @@ use PWE\Core\UnitTestPWECore;
 
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
-class PWEModulesManagerTest extends \PHPUnit_Framework_TestCase
+class PWEModulesManagerTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -15,7 +15,7 @@ class PWEModulesManagerTest extends \PHPUnit_Framework_TestCase
     protected $object;
     private $pwe;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->pwe = new UnitTestPWECore();
         $this->object = $this->pwe->getModulesManager();
@@ -35,13 +35,15 @@ class PWEModulesManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSingleInstanceModule()
     {
-        $this->object->getSingleInstanceModule(__CLASS__);
+        $module = $this->object->getSingleInstanceModule(DummyTestModule::class);
+        $this->assertInstanceOf(DummyTestModule::class, $module);
+        $this->assertSame($this->pwe, $module->getPWE());
     }
 
     public function testGetMultiInstanceModule()
     {
-        $a['!i']['class'] = __CLASS__;
-        $this->object->getMultiInstanceModule($a);
+        $a['!i']['class'] = DummyTestModule::class;
+        $this->assertInstanceOf(DummyTestModule::class, $this->object->getMultiInstanceModule($a));
     }
 
     public function testRun()
@@ -57,3 +59,8 @@ class PWEModulesManagerTest extends \PHPUnit_Framework_TestCase
 
 }
 
+
+/** Minimal module for instantiation tests, test case classes cannot be constructed as modules. */
+class DummyTestModule extends PWEModule
+{
+}

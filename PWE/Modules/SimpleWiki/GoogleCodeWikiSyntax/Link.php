@@ -2,9 +2,8 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
-class Link extends TagXhtml
+class Link extends \WikiTagXhtml
 {
 
     protected $name = 'a';

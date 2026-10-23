@@ -2,7 +2,6 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\Block;
 
 /**
  * Extension sued to generate Lorem Ipsum text.
@@ -11,7 +10,7 @@ use WikiRenderer\Block;
  * @see    http://tinsology.net/2009/07/php-lorem-ipsum-generator/
  * @see    https://github.com/classmarkets/LipsumGenerator
  */
-class ExtLipsum extends Block
+class ExtLipsum extends \WikiRendererBloc
 {
     /** Regular expression. */
     protected $regexp = "/^<<<lipsum(\|\d+)?>>>\s*/";

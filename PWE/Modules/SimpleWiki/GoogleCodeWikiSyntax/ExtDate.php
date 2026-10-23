@@ -2,10 +2,9 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
 /** Extension for date manipulation. */
-class ExtDate extends TagXhtml
+class ExtDate extends \WikiTagXhtml
 {
     protected $name = 'image';
     public $beginTag = '<<date';

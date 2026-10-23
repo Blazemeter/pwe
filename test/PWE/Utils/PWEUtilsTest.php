@@ -6,7 +6,7 @@ use PWE\Core\PWEURL;
 
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
-class PWEUtilsTest extends \PHPUnit_Framework_TestCase
+class PWEUtilsTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testProtectAgainsRelativePaths_1()

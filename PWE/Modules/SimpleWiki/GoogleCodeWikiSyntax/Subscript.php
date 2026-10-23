@@ -2,12 +2,11 @@
 
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
-use WikiRenderer\TagXhtml;
 
 /**
  * Gestion du texte en indice.
  */
-class Subscript extends TagXhtml
+class Subscript extends \WikiTagXhtml
 {
     protected $name = 'sub';
     public $beginTag = ',,';

@@ -13,7 +13,7 @@ use PWEUnitTests;
 
 require_once __DIR__ . '/../../PWEUnitTests.php';
 
-class PWECoreTest extends \PHPUnit_Framework_TestCase
+class PWECoreTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -21,7 +21,7 @@ class PWECoreTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new PWECoreImpl();
         $this->object->setDataDirectory(__DIR__);
@@ -29,7 +29,7 @@ class PWECoreTest extends \PHPUnit_Framework_TestCase
         $this->object->setTempDirectory(PWEUnitTests::utGetCleanTMP());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
 
     }
@@ -188,7 +188,7 @@ class PWECoreTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->process('/midaccept/');
         $node = $this->object->getNode();
-        $this->assertNull($node['!i']['marker']);
+        $this->assertArrayNotHasKey('marker', $node['!i']);
         $this->assertEquals("/midaccept:", $this->object->getContent());
     }
 

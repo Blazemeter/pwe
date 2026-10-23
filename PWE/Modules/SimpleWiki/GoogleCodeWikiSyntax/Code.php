@@ -3,10 +3,9 @@
 namespace PWE\Modules\SimpleWiki\GoogleCodeWikiSyntax;
 
 use GeSHi;
-use WikiRenderer\Block;
 
 /** Gestion des paragraphes de code. */
-class Code extends Block
+class Code extends \WikiRendererBloc
 {
     public $type = 'div';
     protected $isOpen = false;
