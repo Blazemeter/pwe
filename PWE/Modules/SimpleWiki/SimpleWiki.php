@@ -22,7 +22,7 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
     public function process()
     {
         $node = $this->PWE->getNode();
-        $class = $node['!i']['syntax'] ?: get_class(new Config());
+        $class = ($node['!i']['syntax'] ?? null) ?: get_class(new Config());
         $this->config = new $class();
         if ($this->config instanceof PWEConnected) {
             $this->config->setPWE($this->PWE);
@@ -34,7 +34,7 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
         if (!empty($node['!i']['single_page']) && !$args) {
             throw new HTTP3xxException($node['!i']['single_page'] . "/");
         } elseif (!$args) {
-            $page = $node['!i']['start_page'] ?: "list";
+            $page = ($node['!i']['start_page'] ?? null) ?: "list";
             throw new HTTP3xxException($page . "/");
 
         } elseif ($args[0] == 'list') {
@@ -118,10 +118,10 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
      */
     private function getDirAndExt($node)
     {
-        $dir = $node['!i']['wiki_dir'];
-        $ext = $node['!i']['wiki_file_ext'] ?: "wiki";
+        $dir = $node['!i']['wiki_dir'] ?? null;
+        $ext = ($node['!i']['wiki_file_ext'] ?? null) ?: "wiki";
 
-        if ($dir[0] != DIRECTORY_SEPARATOR) {
+        if (substr((string)$dir, 0, 1) != DIRECTORY_SEPARATOR) {
             $dir = $this->PWE->getDataDirectory() . '/' . $dir;
         }
 
@@ -167,8 +167,8 @@ class SimpleWiki extends PWEModule implements Outputable, BreadcrumbsGenerator
         $params = $this->PWE->getURL()->getParamsAsArray();
         $res = array();
         $res[] = array('selected' => 1, '!a' => array(
-            'link' => "../" . $params[0],
-            'title' => $params[0]
+            'link' => "../" . ($params[0] ?? ''),
+            'title' => $params[0] ?? null
         ));
         return $res;
     }

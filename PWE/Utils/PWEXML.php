@@ -172,9 +172,12 @@ class PWEXML extends PWEXMLFunctions implements Setupable
             if (!$ev)
                 continue;
             foreach ($ev as $n => $t) {
+                if (!is_array($t)) {
+                    throw new RuntimeException("Broken XML structure at element '$ek'");
+                }
                 $l .= $tab . '<' . $ek;
 
-                foreach ($t['!a'] ? $t['!a'] : array() as $k => $v) {
+                foreach (!empty($t['!a']) ? $t['!a'] : array() as $k => $v) {
                     //$v=str_replace('&','&amp;',$v);
                     if ($v == '') {
                         continue; // maybe it's slows us

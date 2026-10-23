@@ -261,7 +261,7 @@ class PWECore
             $this->siteStructure = $this->getSiteStructure();
         }
 
-        PWELogger::info("=== %s %s", $_SERVER['REQUEST_METHOD'], $uri);
+        PWELogger::info("=== %s %s", $_SERVER['REQUEST_METHOD'] ?? 'CLI', $uri);
         PWELogger::debug("Request variables: %s", $_REQUEST);
         $this->URL = new PWEURL($uri, $this->siteStructure);
 
@@ -270,7 +270,7 @@ class PWECore
         }
 
         $node = $this->getNode();
-        $this->setDisplayTemplate($node['!i']['template']);
+        $this->setDisplayTemplate($node['!i']['template'] ?? null);
 
         $this->jumpToFirstChild();
 
@@ -313,7 +313,7 @@ class PWECore
         }
 
         if (!headers_sent()) {
-            $status = $_SERVER["SERVER_PROTOCOL"] . ' ' . $code;
+            $status = ($_SERVER["SERVER_PROTOCOL"] ?? 'HTTP/1.1') . ' ' . $code;
             PWELogger::debug("HTTP Status header: %s", $status);
             header($status, true, $code);
         } else {
