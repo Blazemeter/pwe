@@ -6,6 +6,7 @@ use BadFunctionCallException;
 use Exception;
 use InvalidArgumentException;
 use PWE\Exceptions\HTTP4xxException;
+use PWE\Exceptions\HTTP5xxException;
 use PWE\Modules\MenuGenerator;
 use PWE\Modules\Outputable;
 use PWE\Modules\PWEModule;
@@ -282,6 +283,45 @@ class PWECoreTest extends \PHPUnit\Framework\TestCase
         $this->object->getEmptyTemplate();
     }
 
+    public function testGetErrorPage_ServerErrorDetailsHiddenFromRemote()
+    {
+        $html = $this->renderErrorPage(new HTTP5xxException('connection to server at 10.1.2.3 failed'), '192.0.2.1');
+        $this->assertStringNotContainsString('10.1.2.3', $html);
+        $this->assertStringContainsString('The request could not be completed.', $html);
+        $this->assertStringContainsString('500 Internal Server Error', $html);
+    }
+
+    public function testGetErrorPage_ServerErrorDetailsShownLocally()
+    {
+        $html = $this->renderErrorPage(new HTTP5xxException('connection to server at 10.1.2.3 failed'), '127.0.0.1');
+        $this->assertStringContainsString('10.1.2.3', $html);
+    }
+
+    public function testGetErrorPage_ClientErrorMessageShown()
+    {
+        $html = $this->renderErrorPage(new HTTP4xxException('Wiki page not found', HTTP4xxException::NOT_FOUND), '192.0.2.1');
+        $this->assertStringContainsString('Wiki page not found', $html);
+        $this->assertStringContainsString('404', $html);
+    }
+
+    public function testGetErrorPage_UnknownCode()
+    {
+        $html = $this->renderErrorPage(new Exception('internal detail', 7), '192.0.2.1');
+        $this->assertStringNotContainsString('internal detail', $html);
+    }
+
+    private function renderErrorPage(Exception $e, $remoteAddr)
+    {
+        $this->object->process('/test/subnode/');
+        $saved = $_SERVER;
+        $_SERVER['REMOTE_ADDR'] = $remoteAddr;
+        $_SERVER['SERVER_ADDR'] = '127.0.0.1';
+        try {
+            return $this->object->getErrorPage($e);
+        } finally {
+            $_SERVER = $saved;
+        }
+    }
 
 }
 

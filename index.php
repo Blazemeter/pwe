@@ -16,6 +16,7 @@ use PWE\Core\PWECMDJob;
 use PWE\Core\PWECore;
 use PWE\Core\PWELogger;
 use PWE\Exceptions\PHPFatalException;
+use PWE\Exceptions\PWEHTTPException;
 
 require_once __DIR__ . '/PWE/Modules/Setupable.php';
 require_once __DIR__ . '/PWE/Core/PWECore.php';
@@ -86,6 +87,11 @@ if (php_sapi_name() == 'cli') {
             $PWECore->sendHTTPStatusCode($e->getCode());
             echo $PWECore->getErrorPage($e);
         } catch (\Exception $e2) {
+            PWELogger::error('Failed to render error page for %s: %s', $uri, $e2);
+            // exception details only for local requests, same as on the error page
+            if (($_SERVER['REMOTE_ADDR'] ?? null) != ($_SERVER['SERVER_ADDR'] ?? null)) {
+                die(PWEHTTPException::$HTTPErrorMessages[500]);
+            }
             echo "<textarea cols='100' rows='25' readonly='readonly'>";
             echo $e2->__toString();
             echo "</textarea><br>";

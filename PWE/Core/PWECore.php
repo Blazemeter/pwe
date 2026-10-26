@@ -336,10 +336,14 @@ class PWECore
     public function getErrorPage(\Exception $e)
     {
         $smarty = $this->getSmarty();
-        $smarty->assign('code', $e->getCode() ? $e->getCode() : HTTP5xxException::RUNTIME_ERROR);
-        $smarty->assign('code_desc', PWEHTTPException::$HTTPErrorMessages[$e->getCode()]);
-        $smarty->assign('message', $e->getMessage());
-        if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
+        $code = $e->getCode() ? $e->getCode() : HTTP5xxException::RUNTIME_ERROR;
+        $isLocalRequest = ($_SERVER['REMOTE_ADDR'] ?? null) == ($_SERVER['SERVER_ADDR'] ?? null);
+        $smarty->assign('code', $code);
+        $smarty->assign('code_desc', PWEHTTPException::$HTTPErrorMessages[$e->getCode()] ?? null);
+        // server error details may reveal internals (paths, addresses), index.php logs them
+        $isServerError = $code >= 500 || $code <= 100;
+        $smarty->assign('message', $isServerError && !$isLocalRequest ? 'The request could not be completed.' : $e->getMessage());
+        if ($isLocalRequest) {
             $smarty->assign('trace', $e->__toString());
             $smarty->assign('inner', $e->getPrevious());
         }
